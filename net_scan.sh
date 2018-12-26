@@ -15,7 +15,7 @@ NMAP_RESULT=$(sudo nmap -sn 192.168.1.0/24)
 RAW_MACS=$(echo $NMAP_RESULT | grep -oE '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}')
 RAW_IPS=$(echo $NMAP_RESULT | grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}")
 # There will always be one more IP than the number of MAC addresses, because localhost shows its IP address but not its MAC
-MACS_PARSED=$(echo $RAW_MACS | sed 's/ /|/g')
+MACS_PARSED=$(echo $RAW_MACS | sed 's/ /|/g')	# We replace spaces with '|' in order to use an unique string in grep
 IPS_ARRAY=($RAW_IPS)
 
 echo '---------------------------------'
