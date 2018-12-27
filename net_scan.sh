@@ -1,3 +1,6 @@
+#!/bin/bash
+# ****** IMPORTANT: Run this script as sudo ******
+
 # First, we get all the active connections with nmap
 # Second, we filter them with the pattern MAC Address, and get the third column (the MAC itself, using space as separator)
 # Third, we replace each newline with '|'
@@ -11,7 +14,7 @@
 MACS_FILE=$1
 WARNING_FILE=$2
 
-NMAP_RESULT=$(sudo nmap -sn 192.168.1.0/24)
+NMAP_RESULT=$(nmap -sn 192.168.1.0/24)
 
 RAW_MACS=$(echo $NMAP_RESULT | grep -oE '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}')
 RAW_IPS=$(echo $NMAP_RESULT | grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}")
