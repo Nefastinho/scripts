@@ -38,7 +38,7 @@ DATE=$(date '+%d/%m/%Y %T')
 for MAC in $RAW_MACS; do
     if ! grep -q $MAC $MACS_FILE
 	then
-    	echo "[$DATE] $MAC - ${IPS_ARRAY[$INDEX]} is not recognized" | tee -a $2	# We echo to standard output and to a file with tee
+    	echo "[$DATE] $MAC - ${IPS_ARRAY[$INDEX]} is not recognized" | tee -a $WARNING_FILE	# We echo to standard output and to a file with tee
 	fi
 	((INDEX++))
 done
