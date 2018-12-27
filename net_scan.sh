@@ -9,6 +9,7 @@
 #MACS_PARSED=$(sudo nmap -sn 192.168.1.0/24 | awk '/MAC Address:/{ print $3 }' | sed ':a;N;$!ba;s/\n/|/g')
 
 MACS_FILE=$1
+WARNING_FILE=$2
 
 NMAP_RESULT=$(sudo nmap -sn 192.168.1.0/24)
 
@@ -16,7 +17,7 @@ RAW_MACS=$(echo $NMAP_RESULT | grep -oE '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2
 RAW_IPS=$(echo $NMAP_RESULT | grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}")
 # There will always be one more IP than the number of MAC addresses, because localhost shows its IP address but not its MAC
 MACS_PARSED=$(echo $RAW_MACS | sed 's/ /|/g')	# We replace spaces with '|' in order to use an unique string in grep
-IPS_ARRAY=($RAW_IPS)
+IPS_ARRAY=($RAW_IPS) # Converting IPs string into an array
 
 echo '---------------------------------'
 echo 'Known hosts:'
@@ -29,10 +30,12 @@ echo '---------------------------------'
 
 # If the mac address is not in the MACS_FILE, then it's not recognized
 INDEX=0
+DATE=$(date '+%d/%m/%Y %T')
+
 for MAC in $RAW_MACS; do
     if ! grep -q $MAC $MACS_FILE
 	then
-    	echo "$MAC - ${IPS_ARRAY[$INDEX]} is not recognized"
+    	echo "[$DATE] $MAC - ${IPS_ARRAY[$INDEX]} is not recognized" | tee -a $2	# We echo to standard output and to a file with tee
 	fi
 	((INDEX++))
 done
