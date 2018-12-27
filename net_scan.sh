@@ -22,7 +22,7 @@ IPS_ARRAY=($RAW_IPS) # Converting IPs string into an array
 echo '---------------------------------'
 echo 'Known hosts:'
 echo '---------------------------------'
-egrep -i $MACS_PARSED $MACS_FILE
+grep -iE $MACS_PARSED $MACS_FILE
 
 echo '---------------------------------'
 echo 'Unknown hosts:'
