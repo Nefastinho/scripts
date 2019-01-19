@@ -11,6 +11,7 @@
 
 #MACS_PARSED=$(sudo nmap -sn 192.168.1.0/24 | awk '/MAC Address:/{ print $3 }' | sed ':a;N;$!ba;s/\n/|/g')
 
+#----------------------------------------------------------------
 # Runs an OS detection scan of the UNKOWN_IP array
 analyse_ip () {	
 	UNKNOWN_IP=$1	
@@ -21,6 +22,7 @@ analyse_ip () {
 		echo '---------------------------------'
 	done
 }
+#----------------------------------------------------------------
 
 MACS_FILE=$1
 WARNING_FILE=$2
