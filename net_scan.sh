@@ -65,6 +65,6 @@ if ! [ -z "$UNKNOWN_IP" ]
 	then		
 		echo '---------------------------------'
 		echo "Analizing IPs detected..."		
-    	analyse_ip "$UNKNOWN_IP" >> $IP_FILE	
+    	analyse_ip "$UNKNOWN_IP" >> $IP_FILE	# We redirect the function's output to a file
 		echo "Done"
 fi
