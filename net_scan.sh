@@ -14,7 +14,7 @@
 # Runs an OS detection scan of the UNKOWN_IP array
 analyse_ip () {	
 	UNKNOWN_IP=$1	
-	for IP in $UNKNOWN_IP; do
+	for IP in ${UNKNOWN_IP[@]}; do   #The [@] syntax tells the interpreter that this is an indexed array that we'll be iterating over.
 		echo "$IP:"
 		echo '---------------------------------'
 		sudo nmap -sV -O -v $IP
@@ -62,7 +62,7 @@ done
 if ! [ -z "$UNKNOWN_IP" ]
 	then		
 		echo '---------------------------------'
-		echo "Analizing IPs detected..."
+		echo "Analizing IPs detected..."		
     	analyse_ip "$UNKNOWN_IP" >> $IP_FILE	
 		echo "Done"
 fi
