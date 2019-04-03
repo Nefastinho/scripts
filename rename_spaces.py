@@ -64,8 +64,7 @@ else:
 			if (len(number)==digits):
 				print picture + " ya esta en el formato correcto. Omitiendo ..."
 			else:				
-				new_number = add_leading_zeros(number,digits)
-				#new_picture = picture.replace("("+number+")","("+new_number+")")
+				new_number = add_leading_zeros(number,digits)				
 				new_picture = picture.replace(" "+number," "+new_number)
 				os.rename(picture,new_picture)
 				print "Renombrando " + picture + " --> " + new_picture
