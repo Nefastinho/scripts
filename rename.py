@@ -41,7 +41,7 @@ def get_files_name(files):
 
 arguments = sys.argv
 if len(arguments)!=3:
-    print "Numero de parametros incorrecto.\nUso: rename.py <extension> <directorio>"
+    print("Numero de parametros incorrecto.\nUso: rename.py <extension> <directorio>")
 else:
 	extension = "." + arguments[1]
 	path = arguments[2] + "/"
@@ -50,7 +50,7 @@ else:
 	os.chdir(path)
 	matches = glob.glob(path+"*"+extension)	
 	if not matches:
-		print "No hay archivos con extension " + extension
+		print("No hay archivos con extension " + extension)
 	else:
 		pictures = get_files_name(matches)
 		pictures.sort() # Ordeno para que visualmente se vea mas claro que se renombra
@@ -60,12 +60,12 @@ else:
 		for picture in pictures:
 			number = get_number(picture)
 			if (len(number)==digits):
-				print picture + " ya esta en el formato correcto. Omitiendo ..."
+				print(picture + " ya esta en el formato correcto. Omitiendo ...")
 			else:				
 				new_number = add_leading_zeros(number,digits)
 				new_picture = picture.replace("("+number+")","("+new_number+")")
 				os.rename(picture,new_picture)
-				print "Renombrando " + picture + " --> " + new_picture
+				print("Renombrando " + picture + " --> " + new_picture)
 				contador+=1
 
-		print "Proceso finalizado. Se han realizado " + str(contador) + " cambios."
+		print("Proceso finalizado. Se han realizado " + str(contador) + " cambios.")
