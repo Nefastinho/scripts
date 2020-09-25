@@ -2,7 +2,7 @@ import os, sys, glob
 arguments = sys.argv
 
 if len(arguments)!=3:
-    print 'Numero de parametros incorrecto.\nUso: renameByDate.py <numero> <path>'
+    print('Numero de parametros incorrecto.\nUso: renameByDate.py <numero> <path>')
 else:    
     number = arguments[1]
     path = arguments[2] + '/'
@@ -21,5 +21,5 @@ else:
         newName = '%s(%s)%s' % (number,numStr,extension)
         filePath = path + newName
         os.rename(file,filePath)
-        print 'Renombrando %s --> %s' % (file,filePath)        
+        print('Renombrando %s --> %s' % (file,filePath))        
         count += 1
